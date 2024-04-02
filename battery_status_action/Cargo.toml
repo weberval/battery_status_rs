@@ -1,0 +1,11 @@
+[package]
+name = "battery_status_action"
+version = "1.0.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+system_shutdown = "4.0.1"
+battery_status = {path = "../battery_status"}
+notify-rust = "4.10.0"

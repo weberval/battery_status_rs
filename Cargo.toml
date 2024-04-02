@@ -1,0 +1,30 @@
+[package]
+name = "battery_status_rs"
+version = "3.0.0"
+edition = "2021"
+authors = ["Valentin Weber"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arguments = "0.7.2"
+sd-notify = "0.4.1"
+battery_status_action = { path = "battery_status_action" }
+
+[[bin]]
+name = "battery_status_rs_notification"
+path = "src/notification.rs"
+
+[[bin]]
+name = "battery_status_rs_sleep"
+path = "src/sleep.rs"
+
+[lib]
+name = "macro"
+path = "src/macro.rs"
+
+[workspace]
+members = [
+    "battery_status",
+    "battery_status_action",
+]
