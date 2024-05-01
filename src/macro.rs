@@ -1,12 +1,12 @@
 #[macro_export]
 macro_rules! main {
-    ($feature : ty) => {
+    ($feature : ty, $threshold : literal ) => {
         use battery_status_action::Action;
 
         let arguments: arguments::Arguments =
             arguments::parse(std::env::args()).expect("failed to parse command line arguments");
 
-        let threshold: i32 = arguments.get::<i32>("threshold").unwrap_or(15i32);
+        let threshold: i32 = arguments.get::<i32>("threshold").unwrap_or($threshold);
 
         let mut action: $feature = battery_status_action::Action::new(threshold);
 
