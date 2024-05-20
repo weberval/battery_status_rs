@@ -19,6 +19,10 @@ path = "src/notification.rs"
 name = "battery_status_rs_sleep"
 path = "src/sleep.rs"
 
+[[bin]]
+name = "battery_status_rs_hibernate"
+path = "src/hibernate.rs"
+
 [lib]
 name = "macro"
 path = "src/macro.rs"
