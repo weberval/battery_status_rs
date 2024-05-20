@@ -1,6 +1,6 @@
 [package]
 name = "battery_status_rs"
-version = "3.1.0"
+version = "4.0.0"
 edition = "2021"
 authors = ["Valentin Weber"]
 
@@ -18,6 +18,10 @@ path = "src/notification.rs"
 [[bin]]
 name = "battery_status_rs_sleep"
 path = "src/sleep.rs"
+
+[[bin]]
+name = "battery_status_rs_hibernate"
+path = "src/hibernate.rs"
 
 [lib]
 name = "macro"

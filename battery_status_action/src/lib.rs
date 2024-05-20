@@ -9,6 +9,11 @@ pub struct Sleep {
     battery_status: battery_status::BatteryStatus,
 }
 
+pub struct Hibernate {
+    threshold: i32,
+    battery_status: battery_status::BatteryStatus,
+}
+
 pub trait Action {
     fn new(threshold: i32) -> Self;
     fn refresh(&mut self);
@@ -59,6 +64,27 @@ impl Action for Sleep {
                 match system_shutdown::sleep() {
                     Ok(_) => {}
                     Err(_) => eprintln!("failed to put system to sleep"),
+                }
+            }
+        }
+    }
+}
+
+impl Action for Hibernate {
+    fn new(threshold: i32) -> Hibernate {
+        Hibernate {
+            threshold,
+            battery_status: battery_status::BatteryStatus::new(),
+        }
+    }
+
+    fn refresh(&mut self) {
+        if !self.battery_status.is_power_supply_online() {
+            let percentage: i32 = self.battery_status.get_percentage();
+            if percentage < self.threshold {
+                match system_shutdown::hibernate() {
+                    Ok(_) => {}
+                    Err(_) => eprintln!("failed to put system to hibernate"),
                 }
             }
         }
